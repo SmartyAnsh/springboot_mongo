@@ -1,15 +1,8 @@
 package com.smartdiscover.repository;
 
-import com.smartdiscover.pojo.User;
+import com.smartdiscover.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import java.util.List;
 
 public interface UserRepository extends MongoRepository<User, String> {
 
-    public User findById(String id);
-
-    public User findByFirstName(String firstName);
-
-    public List<User> findByLastName(String lastName);
 }

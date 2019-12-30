@@ -1,27 +1,27 @@
 package com.smartdiscover.impl;
 
-import com.smartdiscover.pojo.User;
+import com.smartdiscover.model.User;
 import com.smartdiscover.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.smartdiscover.RegistrationInterface;
+import com.smartdiscover.Registration;
 import java.util.List;
 
 @Service
-public class RegistrationImpl implements RegistrationInterface<String, User> {
+public class RegistrationImpl implements Registration<String, User> {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public User registerUser(User user) throws Exception {
-        userRepository.save(user);
+        user = userRepository.save(user);
         return user;
     }
 
     @Override
-    public User getUserData(String userId) throws Exception {
-        User user = userRepository.findById(userId);
+    public User getUser(String userId) throws Exception {
+        User user = userRepository.findOne(userId);
         return user;
     }
 
@@ -31,10 +31,16 @@ public class RegistrationImpl implements RegistrationInterface<String, User> {
     }
 
     @Override
+    public User updateUser(User user) throws Exception {
+        user = userRepository.save(user);
+        return user;
+    }
+
+    @Override
     public void deleteUser(String userId) throws Exception {
-        if(userId == null){
+        if (userId == null) {
             throw new Exception("user id is null");
-        }else{
+        } else {
             userRepository.delete(userId);
         }
     }

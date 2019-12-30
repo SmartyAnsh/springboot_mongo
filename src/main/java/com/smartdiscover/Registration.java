@@ -7,7 +7,7 @@ package com.smartdiscover;
  * @param <USER>                - User
  * @author anshulbansal
  */
-public interface RegistrationInterface<ID, USER> {
+public interface Registration<ID, USER> {
 
     /**
      * Register User (validate and store) and returns the user object
@@ -25,7 +25,16 @@ public interface RegistrationInterface<ID, USER> {
      * @return user
      * @throws Exception
      */
-    USER getUserData(ID userId) throws Exception;
+    USER getUser(ID userId) throws Exception;
+
+    /**
+     * Update User (validate and store) and returns the user object
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    USER updateUser(USER user) throws Exception;
 
     /**
      * Delete User record
